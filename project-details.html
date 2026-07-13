@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails du Projet — Shanny RAHAJARASONY</title>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!-- custom css link -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <style>
+    /* Spécificités pour la page détails */
+    .project-details-container {
+      padding: 30px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--orange-yellow-crayola);
+      font-size: var(--fs-6);
+      font-weight: var(--fw-500);
+      margin-bottom: 30px;
+      transition: var(--transition-1);
+    }
+    .back-btn:hover {
+      color: var(--white-1);
+    }
+    .project-header-img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-2);
+    }
+    .project-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .project-category-badge {
+      display: inline-block;
+      background: var(--onyx);
+      color: var(--light-gray);
+      padding: 5px 15px;
+      border-radius: 8px;
+      font-size: var(--fs-7);
+      margin-bottom: 15px;
+      border: 1px solid var(--jet);
+    }
+    .project-actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--border-gradient-onyx);
+      color: var(--orange-yellow-crayola);
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: var(--fs-6);
+      font-weight: var(--fw-500);
+      box-shadow: var(--shadow-1);
+      transition: var(--transition-1);
+      border: 1px solid var(--jet);
+    }
+    .action-btn:hover {
+      background: var(--orange-yellow-crayola);
+      color: var(--eerie-black-1);
+    }
+    .action-btn ion-icon {
+      font-size: 20px;
+    }
+    .project-description {
+      color: var(--light-gray);
+      font-size: var(--fs-6);
+      line-height: 1.8;
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid var(--jet);
+    }
+
+    /* Titres dans la description */
+    .project-description h3 {
+      color: var(--white-2);
+      font-size: var(--fs-5);
+      font-weight: var(--fw-600);
+      margin: 30px 0 12px;
+      padding-left: 12px;
+      border-left: 3px solid var(--orange-yellow-crayola);
+    }
+    .project-description h3:first-child {
+      margin-top: 0;
+    }
+    .project-description h4 {
+      color: var(--light-gray-70, #a8a8b3);
+      font-size: var(--fs-6);
+      font-weight: var(--fw-500);
+      margin: 18px 0 10px;
+    }
+
+    /* Listes dans la description */
+    .project-description ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .project-description ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--light-gray);
+      font-size: var(--fs-6);
+      line-height: 1.7;
+    }
+    .project-description ul li::before {
+      content: '▹';
+      color: var(--orange-yellow-crayola);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Code inline */
+    .project-description code {
+      background: var(--onyx);
+      color: var(--orange-yellow-crayola);
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-size: 0.85em;
+      font-family: 'Courier New', monospace;
+      border: 1px solid var(--jet);
+    }
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .stat-card {
+      background: var(--onyx);
+      border: 1px solid var(--jet);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+    }
+    .stat-card .stat-number {
+      display: block;
+      font-size: 2em;
+      font-weight: var(--fw-600);
+      color: var(--orange-yellow-crayola);
+      line-height: 1;
+    }
+    .stat-card .stat-label {
+      display: block;
+      font-size: var(--fs-7);
+      color: var(--light-gray);
+      margin-top: 6px;
+    }
+    /* === GALLERY === */
+    .screenshots-section {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid var(--jet);
+    }
+    .screenshots-section h3 {
+      color: var(--white-2);
+      font-size: var(--fs-5);
+      font-weight: var(--fw-600);
+      margin-bottom: 16px;
+      padding-left: 12px;
+      border-left: 3px solid var(--orange-yellow-crayola);
+    }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    .screenshot-thumb {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 9/19;
+      background: var(--onyx);
+      border: 1px solid var(--jet);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .screenshot-thumb.desktop {
+      aspect-ratio: 16/9;
+      grid-column: span 2;
+    }
+    .screenshot-thumb:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      border-color: var(--orange-yellow-crayola);
+    }
+    .screenshot-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .screenshot-thumb .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .screenshot-thumb:hover .thumb-overlay {
+      opacity: 1;
+    }
+    .thumb-overlay ion-icon {
+      font-size: 32px;
+      color: var(--orange-yellow-crayola);
+    }
+    .screenshot-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      color: var(--white-2);
+      font-size: 11px;
+      padding: 20px 8px 8px;
+      text-align: center;
+    }
+
+    /* === LIGHTBOX === */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 20px;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox-img {
+      max-height: 80vh;
+      max-width: 90vw;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      object-fit: contain;
+    }
+    .lightbox-caption {
+      color: var(--white-2);
+      font-size: var(--fs-6);
+      text-align: center;
+    }
+    .lightbox-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .lightbox-btn {
+      background: var(--onyx);
+      color: var(--orange-yellow-crayola);
+      border: 1px solid var(--jet);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 22px;
+      transition: background 0.2s;
+    }
+    .lightbox-btn:hover {
+      background: var(--orange-yellow-crayola);
+      color: var(--eerie-black-1);
+    }
+    .lightbox-counter {
+      color: var(--light-gray);
+      font-size: var(--fs-7);
+      min-width: 60px;
+      text-align: center;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--onyx);
+      color: var(--white-2);
+      border: 1px solid var(--jet);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  </style>
+
+  <!-- google font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <main>
+
+    <!-- SIDEBAR MINIMALISTE -->
+    <aside class="sidebar" data-sidebar>
+      <div class="sidebar-info">
+        <figure class="avatar-box">
+          <img src="./assets/images/my-avatar.png" alt="Shanny RAHAJARASONY" width="80">
+        </figure>
+        <div class="info-content">
+          <h1 class="name" title="Shanny RAHAJARASONY">Shanny RAHAJARASONY</h1>
+          <p class="title" data-i18n="title">Développeur Full-Stack & IA</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+      <!-- NAVBAR MINIMALISTE -->
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="index.html?tab=portfolio" class="navbar-link active">Retour au Portfolio</a>
+          </li>
+          <li class="navbar-item lang-switcher-item" style="border-left: 1px solid var(--jet); padding-left: 10px;">
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <button class="lang-btn active" data-lang="fr" style="background: var(--orange-yellow-crayola); color: var(--eerie-black-1); border: 1px solid var(--orange-yellow-crayola); padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; cursor: pointer;">FR</button>
+              <button class="lang-btn" data-lang="en" style="background: transparent; color: var(--light-gray); border: 1px solid var(--jet); padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; cursor: pointer;">EN</button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <article class="project-details active" style="padding-top: 65px;">
+        <div class="project-details-container" id="project-container">
+          <!-- Injecté via JS -->
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <script src="./assets/js/projectsData.js"></script>
+  <script>
+    // Logique de langue basique
+    let currentLang = localStorage.getItem('selectedLanguage') || 'fr';
+    const langBtns = document.querySelectorAll('.lang-btn');
+
+    function updateLanguageToggle() {
+      langBtns.forEach(btn => {
+        if (btn.dataset.lang === currentLang) {
+          btn.style.background = 'var(--orange-yellow-crayola)';
+          btn.style.color = 'var(--eerie-black-1)';
+          btn.style.borderColor = 'var(--orange-yellow-crayola)';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.color = 'var(--light-gray)';
+          btn.style.borderColor = 'var(--jet)';
+        }
+      });
+    }
+
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentLang = btn.dataset.lang;
+        localStorage.setItem('selectedLanguage', currentLang);
+        updateLanguageToggle();
+        renderProject(); // Re-render pour traduire la description
+      });
+    });
+
+    updateLanguageToggle();
+
+    // Récupérer l'ID de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('id');
+
+    function renderProject() {
+      const container = document.getElementById('project-container');
+      const project = projectsData[projectId];
+
+      if (!project) {
+        container.innerHTML = `
+          <a href="index.html?tab=portfolio" class="back-btn">
+            <ion-icon name="arrow-back-outline"></ion-icon> Retour au Portfolio
+          </a>
+          <h2 class="h2 article-title">Projet introuvable</h2>
+          <div class="project-description">Le projet demandé n'existe pas ou l'URL est invalide.</div>
+        `;
+        return;
+      }
+
+      const desc = currentLang === 'en' ? project.desc_en : project.desc_fr;
+      const backText = currentLang === 'en' ? 'Back to Portfolio' : 'Retour au Portfolio';
+      const liveText = currentLang === 'en' ? 'Live Demo' : 'Live Demo';
+
+      let actionsHtml = `<a href="${project.github}" target="_blank" class="action-btn">
+                          <ion-icon name="logo-github"></ion-icon> Code Source
+                         </a>`;
+      
+      if (project.demo) {
+        actionsHtml += `<a href="${project.demo}" target="_blank" class="action-btn">
+                          <ion-icon name="globe-outline"></ion-icon> ${liveText}
+                        </a>`;
+      }
+      if (project.youtube) {
+        actionsHtml += `<a href="${project.youtube}" target="_blank" class="action-btn">
+                          <ion-icon name="logo-youtube"></ion-icon> YouTube Video
+                        </a>`;
+      }
+      if (project.report) {
+        const reportText = currentLang === 'en' ? 'Full Report (PDF)' : 'Rapport complet (PDF)';
+        actionsHtml += `<a href="${project.report}" target="_blank" class="action-btn">
+                          <ion-icon name="document-text-outline"></ion-icon> ${reportText}
+                        </a>`;
+      }
+
+      // Gallery HTML
+      let galleryHtml = '';
+      if (project.screenshots && project.screenshots.length > 0) {
+        const thumbs = project.screenshots.map((s, i) =>
+          `<div class="screenshot-thumb ${s.class || ''}" onclick="openLightbox(${i})">
+            <img src="${s.src}" alt="${s.caption}" loading="lazy">
+            <div class="thumb-overlay"><ion-icon name="expand-outline"></ion-icon></div>
+            <div class="screenshot-caption">${s.caption}</div>
+          </div>`
+        ).join('');
+        const galleryTitle = currentLang === 'en' ? 'Screenshots' : 'Captures d\'écran';
+        galleryHtml = `
+          <div class="screenshots-section">
+            <h3>${galleryTitle}</h3>
+            <div class="screenshots-grid">${thumbs}</div>
+          </div>`;
+      }
+
+      container.innerHTML = `
+        <a href="index.html?tab=portfolio" class="back-btn">
+          <ion-icon name="arrow-back-outline"></ion-icon> ${backText}
+        </a>
+        <img src="${project.image}" alt="${project.title}" class="project-header-img">
+        <div class="project-category-badge">${project.category}</div>
+        
+        <div class="project-title-row">
+          <h2 class="h2 article-title" style="padding-bottom: 0;">${project.title}</h2>
+          <div class="project-actions">
+            ${actionsHtml}
+          </div>
+        </div>
+
+        <div class="project-description">${desc}</div>
+        ${galleryHtml}
+      `;
+    }
+
+    // Lightbox logic
+    let currentIndex = 0;
+    let currentScreenshots = [];
+
+    function openLightbox(index) {
+      const project = projectsData[projectId];
+      if (!project || !project.screenshots) return;
+      currentScreenshots = project.screenshots;
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    function updateLightbox() {
+      const s = currentScreenshots[currentIndex];
+      document.getElementById('lightbox-img').src = s.src;
+      document.getElementById('lightbox-caption').textContent = s.caption;
+      document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} / ${currentScreenshots.length}`;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+
+    function lightboxPrev() {
+      currentIndex = (currentIndex - 1 + currentScreenshots.length) % currentScreenshots.length;
+      updateLightbox();
+    }
+
+    function lightboxNext() {
+      currentIndex = (currentIndex + 1) % currentScreenshots.length;
+      updateLightbox();
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'ArrowLeft') lightboxPrev();
+      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Afficher au chargement
+    renderProject();
+  </script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+    <div class="lightbox-nav">
+      <button class="lightbox-btn" onclick="lightboxPrev()"><ion-icon name="chevron-back-outline"></ion-icon></button>
+      <span id="lightbox-counter" class="lightbox-counter">1 / 12</span>
+      <button class="lightbox-btn" onclick="lightboxNext()"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+    </div>
+  </div>
+
+</body>
+
+</html>
