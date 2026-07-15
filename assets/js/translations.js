@@ -16,7 +16,7 @@ const translations = {
     "deployed_project": "Projet déployé",
     "about_title": "À propos de moi",
     "about_p1": "Développeur passionné par l'intelligence artificielle, l'orchestration de processus et le cloud. Autonome et curieux, j'ai mené à bien plusieurs projets concrets : applications mobiles (Flutter), API backend (Node.js, Flask), workflows BPM (Bonita), déploiements Kubernetes (GKE, Minikube) et modélisation multi-agents (NetLogo, GPT-4).",
-    "about_p2": "Je maîtrise la chaîne complète de développement et je m'adapte rapidement à toute nouvelle technologie. Recherche stage de fin d'études (Master 2) de 5 mois à Fianarantsoa ou en full remote, disponible immédiatement.",
+    "about_p2": "Je maîtrise la chaîne complète de développement et je m'adapte rapidement à toute nouvelle technologie. Recherche stage de fin d'études (Master 2) de 3 à 4 mois à Fianarantsoa ou en full remote, disponible immédiatement.",
     "what_im_doing": "Ce que je fais",
     "service_fullstack_title": "Développement Full-Stack Web & Mobile",
     "service_fullstack_desc": "Création d'applications web et mobiles robustes avec React, Node.js, et Flutter. De la conception de l'API à l'interface utilisateur.",
