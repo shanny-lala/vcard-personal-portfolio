@@ -76,9 +76,46 @@ const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
 
+// Validation stricte anti-spam
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const isGibberish = (str) => {
+  const cleanStr = str.replace(/[^a-zA-Z]/g, '');
+  return cleanStr.length > 4 && /^[^aeiouy]+$/i.test(cleanStr);
+};
+
 if (form && formBtn) {
   for (let i = 0; i < formInputs.length; i++) {
     formInputs[i].addEventListener("input", function () {
+      
+      const email = form.querySelector("[name='email']");
+      const fullname = form.querySelector("[name='fullname']");
+      const message = form.querySelector("[name='message']");
+
+      if (email) {
+        const localPart = email.value.split('@')[0];
+        if (email.value && (!emailRegex.test(email.value) || isGibberish(localPart))) {
+          email.setCustomValidity("Invalid");
+        } else {
+          email.setCustomValidity("");
+        }
+      }
+
+      if (fullname) {
+        if (fullname.value && isGibberish(fullname.value)) {
+          fullname.setCustomValidity("Invalid");
+        } else {
+          fullname.setCustomValidity("");
+        }
+      }
+
+      if (message) {
+        if (message.value && isGibberish(message.value)) {
+          message.setCustomValidity("Invalid");
+        } else {
+          message.setCustomValidity("");
+        }
+      }
+
       if (form.checkValidity()) {
         formBtn.removeAttribute("disabled");
       } else {
